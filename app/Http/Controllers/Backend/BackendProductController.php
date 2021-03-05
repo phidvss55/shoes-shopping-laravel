@@ -19,7 +19,7 @@ class BackendProductController extends Controller
     }
 
     public function store() {
-
+        $requestDatas = request()->all();
     }
 
     public function edit($id) {

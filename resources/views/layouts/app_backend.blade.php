@@ -11,9 +11,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/">
 
-    <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
         body {
             min-height: 75rem;

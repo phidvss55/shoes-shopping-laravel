@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 <body>
 <div class="page-holder">
@@ -189,7 +189,6 @@
         injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
 
     </script>
-    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" >
 </div>
 </body>
