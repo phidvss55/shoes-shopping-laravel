@@ -28,7 +28,7 @@ class BackendKeywordRequest extends FormRequest
         ];
     }
 
-    public function message() {
+    public function messages() {
         return [
             'k_name.required'        => 'This field is require. Please fill it.',
             'k_name.unique'        => 'This data has been exist. Please choose another one.',

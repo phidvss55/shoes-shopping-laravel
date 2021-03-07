@@ -32,7 +32,7 @@ class BackendProductRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return [
             'pro_name.required'        => 'This field is require. Please fill it.',

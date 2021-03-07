@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('asset_blog/css/style.default.css" id="theme-stylesheet') }}">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('asset_blog/css/custom.css') }}">
+
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
