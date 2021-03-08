@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
         Route::get('', [BackendCategoryController::class, 'index'])->name('get_backend.category.index');
 
         Route::get('/create', [BackendCategoryController::class, 'create'])->name('get_backend.category.create');
-        Route::post('/create', [BackendCategoryController::class, 'store']);
+        Route::post('/create', [BackendCategoryController::class, 'store'])->name('get_backend.category.store');
 
         Route::get('/update/{id}', [BackendCategoryController::class, 'edit'])->name('get_backend.category.update');
         Route::post('/update/{id}', [BackendCategoryController::class, 'update']);
@@ -34,7 +34,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
         Route::get('', [BackendProductController::class, 'index'])->name('get_backend.product.index');
 
         Route::get('/create', [BackendProductController::class, 'create'])->name('get_backend.product.create');
-        Route::post('/create', [BackendProductController::class, 'store']);
+        Route::post('/create', [BackendProductController::class, 'store'])->name('get_backend.product.store');
 
         Route::get('/update/{id}', [BackendProductController::class, 'edit'])->name('get_backend.product.update');
         Route::post('/update/{id}', [BackendProductController::class, 'update']);
@@ -73,7 +73,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
         Route::get('', [BackendMenuController::class, 'index'])->name('get_backend.menu.index');
 
         Route::get('/create', [BackendMenuController::class, 'create'])->name('get_backend.menu.create');
-        Route::post('/create', [BackendMenuController::class, 'store']);
+        Route::post('/create', [BackendMenuController::class, 'store'])->name('get_backend.menu.store');
 
         Route::get('/update/{id}', [BackendMenuController::class, 'edit'])->name('get_backend.menu.update');
         Route::post('/update/{id}', [BackendMenuController::class, 'update']);

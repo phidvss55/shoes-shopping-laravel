@@ -15,8 +15,10 @@ class BackendTagController extends Controller
     public function index()
     {
         $tags     = Tag::orderByDesc('id')->get();
+        $tag      = new Tag();
         $viewData = [
             'tags' => $tags,
+            'tag'  => $tag,
         ];
 
         return view($this->folder . '.index', $viewData);
