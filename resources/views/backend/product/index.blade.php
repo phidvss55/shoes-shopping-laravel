@@ -8,6 +8,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Slug</th>
             <th>Price</th>
@@ -20,6 +21,11 @@
             @foreach($products as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
+                    <td>
+                        <a href="">
+                            <img src="{{ pare_url_file($item->pro_avatar) }}" alt="" class="img-thumbnail" style="width:60px;height:60px">
+                        </a>
+                    </td>
                     <td>{{ $item->pro_name }}</td>
                     <td>{{ $item->pro_slug }}</td>
                     <td>

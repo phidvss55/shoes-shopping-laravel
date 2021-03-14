@@ -7,6 +7,7 @@ use App\Http\Requests\BackendProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class BackendProductController extends Controller
@@ -34,16 +35,25 @@ class BackendProductController extends Controller
 
     public function store(BackendProductRequest $request)
     {
-        $requestDatas = $request->all();
+        try {
+            DB::beginTransaction();
+            $requestDatas = $request->except('_token');
 
-        $requestDatas['pro_slug']   = Str::slug($requestDatas['pro_name']);
-        $requestDatas['created_at'] = Carbon::now();
-        $product                    = Product::Create($requestDatas);
-        if ( ! $product) {
-            throw new \Exception('Create product is not success.');
+            $requestDatas['pro_slug']   = Str::slug($requestDatas['pro_name']);
+            $requestDatas['created_at'] = Carbon::now();
+            $requestDatas = call_upload_image($requestDatas, 'pro_avatar');
+
+            $product                    = Product::Create($requestDatas);
+            if ( ! $product) {
+                throw new \Exception('Create product is not success.');
+            }
+            DB::commit();
+            return redirect()->back();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return $exception->getMessage();
         }
 
-        return redirect()->back();
     }
 
     public function edit($id)
@@ -65,9 +75,10 @@ class BackendProductController extends Controller
         if ($id) {
             $product = Product::find($id);
         }
-
         $requestDatas['pro_slug']   = Str::slug($requestDatas['pro_name']);
         $requestDatas['updated_at'] = Carbon::now();
+        $requestDatas = call_upload_image($requestDatas, 'pro_avatar');
+
         $product->update($requestDatas);
         if ( ! $product) {
             throw new \Exception('Update product is not success.');

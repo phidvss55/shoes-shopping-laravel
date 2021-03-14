@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-//    use HasFactory;
+//    use HasFactory, SoftDelete;
     protected $table = 'admins';
 
 //    protected $fillable = [''];

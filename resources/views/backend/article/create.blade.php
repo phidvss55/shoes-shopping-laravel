@@ -1,5 +1,5 @@
 @extends('layouts.app_backend')
+@section('title', 'Thêm mới bài viết');
 @section('content')
-    <h2>App backend article</h2>
-    <h2>Create article</h2>
+    @include('backend.article.form', ['route' => route('get_backend.article.store')])
 @stop

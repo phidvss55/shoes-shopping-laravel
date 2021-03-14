@@ -1,4 +1,4 @@
-<form action="{{ $route }}" class="p-2" method="post">
+<form action="{{ $route }}" class="p-2" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-sm-7">
@@ -61,9 +61,15 @@
                             <small class="form-text text-danger">{{ $errors->first('pro_number') }}</small>
                         @endif
                     </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="pro_avatar" >
-                        <label for="customFile" class="custom-file-label">Choose file</label>
+                    <div class="form-control">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="pro_avatar">
+                            <label for="customFile" class="custom-file-label">Choose file</label>
+                            @if (isset($product) && $product->pro_avatar)
+                                <img src="{{ pare_url_file($product->pro_avatar) }}" alt="" class="img-thumbnail"
+                                     style="width:100%;height:auto;max-width:100%;margin-top:15px;">
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

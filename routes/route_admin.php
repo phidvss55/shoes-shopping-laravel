@@ -47,7 +47,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
         Route::get('', [BackendArticleController::class, 'index'])->name('get_backend.article.index');
 
         Route::get('/create', [BackendArticleController::class, 'create'])->name('get_backend.article.create');
-        Route::post('/create', [BackendArticleController::class, 'store']);
+        Route::post('/create', [BackendArticleController::class, 'store'])->name('get_backend.article.store');
 
         Route::get('/update/{id}', [BackendArticleController::class, 'edit'])->name('get_backend.article.update');
         Route::post('/update/{id}', [BackendArticleController::class, 'update']);
