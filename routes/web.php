@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\MenuController;
 use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\ArticleDetailController;
+use App\Http\Controllers\Frontend\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/menu/{slug}', [MenuController::class, 'index'])->name('get.menu');
 
     // Article
+    Route::get('/bai-viet', [ArticleController::class, 'index'])->name('get.blog');
+
+    // Article_detail
     Route::get('/bai-viet/{slug}', [ArticleDetailController::class, 'index'])->name('get.article_detail');
 });
 

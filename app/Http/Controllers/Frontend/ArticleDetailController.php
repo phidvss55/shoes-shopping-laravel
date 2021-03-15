@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Frontend\BlogBaseController;
 
-class ArticleDetailController extends Controller
+class ArticleDetailController extends BlogBaseController
 {
     public function index()
     {

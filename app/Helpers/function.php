@@ -68,7 +68,7 @@ if ( ! function_exists('upload_image')) {
  */
 if (!function_exists('call_upload_image')) {
     function call_upload_image($requestDatas, $field_name) {
-        if ($requestDatas[$field_name]) {
+        if (isset($requestDatas[$field_name])) {
             $image = upload_image($field_name);
             if (isset($image['code']))
             {

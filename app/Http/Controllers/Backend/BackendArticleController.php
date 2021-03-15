@@ -67,19 +67,16 @@ class BackendArticleController extends Controller
 
     public function update(BackendArticleRequest $request, $id)
     {
-        $requestDatas = $request->all();
+        $requestDatas = $request->except('_token');
         $article = Article::find($id);
-
-        $requestDatas['a_slug']   = Str::slug($requestDatas['a_slug']);
+        $requestDatas['a_slug']   = Str::slug($requestDatas['a_name']);
         $requestDatas['updated_at'] = Carbon::now();
-
         $requestDatas = call_upload_image($requestDatas, 'a_avatar');
-
         $article->update($requestDatas);
+
         if ( ! $article) {
             throw new \Exception('Update product is not success.');
         }
-
         return redirect()->route('get_backend.article.index');
     }
 
