@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <form action="{{ $route }}" class="p-2" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
@@ -23,6 +25,15 @@
                         @if($errors->first('a_menu_id'))
                             <small class="form-text text-danger">{{ $errors->first('a_menu_id') }}</small>
                         @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="tag_select">Tag - Từ khoá</label>
+                        <select name="tags[]" id="tag_select" class="form-control" multiple>
+                            <option value="" disabled> -- Please select tag -- </option>
+                            @foreach ($tags as $item)
+                                <option value="{{ $item->id }}" {{ in_array($item->id, $tagsOld) ? 'selected' : '' }}>{{ $item->t_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="a_description">Description</label>
@@ -61,3 +72,9 @@
     <button type="submit" class="btn btn-primary mt-2 text-white">Save Data</button>
     <a href="{{ route('get_backend.article.index') }}" class="btn btn-default mt-2">Cancel Data</a>
 </form>
+
+<script>
+    $(function() {
+        $('#tag_select').select2();
+    });
+</script>

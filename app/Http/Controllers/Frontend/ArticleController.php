@@ -7,12 +7,14 @@ use App\Models\Article;
 
 class ArticleController extends BlogBaseController
 {
-    public function index() {
+    public function index()
+    {
         $articles = Article::with('menu:id,mn_name,mn_slug')->orderByDesc('id')->paginate(10);
-        $menus = $this->getMenus();
         $viewData = [
-            'articles' => $articles,
-            'menus'  => $menus
+            'articles'  => $articles,
+            'tags'      => $this->getTags(),
+            'articlesLatest'  => $this->getArticleLatest(),
+            'menus'     => $this->getMenus(),
         ];
         return view('frontend.menu.index', $viewData);
     }

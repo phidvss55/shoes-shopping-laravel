@@ -12,17 +12,18 @@ class MenuController extends BlogBaseController
     public function index(Request $request, $slug)
     {
         $menu = Menu::where('mn_slug', $slug)->first();
-        if ( ! $menu) {
+        if (!$menu) {
             return abort(404);
         }
         $articles = Article::with('menu:id,mn_name,mn_slug')
-                           ->where('a_menu_id', $menu->id)
-                           ->orderByDesc('id')
-                           ->paginate(10);
+            ->where('a_menu_id', $menu->id)
+            ->orderByDesc('id')
+            ->paginate(10);
         $viewData = [
             'articles' => $articles,
             'menu'     => $menu,
             'menus'    => $this->getMenus(),
+            'articlesLatest'  => $this->getArticleLatest(),
             'tags'     => $this->getTags(),
         ];
 

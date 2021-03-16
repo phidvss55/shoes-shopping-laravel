@@ -54,5 +54,7 @@
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 </html>

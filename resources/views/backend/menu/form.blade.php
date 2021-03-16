@@ -7,5 +7,5 @@
             <small class="form-text text-danger">{{ $errors->first('mn_name') }}</small>
         @endif
     </div>
-    <button type="submit" class="btn btn-primary">Save Category</button>
+    <button type="submit" class="btn btn-primary">Save Menu</button>
 </form>
