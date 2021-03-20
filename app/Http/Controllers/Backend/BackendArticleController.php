@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendArticleRequest;
 use App\Models\Article;
-use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Tag;
 use Carbon\Carbon;
@@ -43,7 +42,7 @@ class BackendArticleController extends Controller
             $datas = [];
             foreach($tags as $tag) {
                 $datas[] = [
-                    
+
                 ];
             }
         }

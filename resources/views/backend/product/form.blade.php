@@ -61,6 +61,16 @@
                             <small class="form-text text-danger">{{ $errors->first('pro_number') }}</small>
                         @endif
                     </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="rad_pro_hot_1" type="radio" name="pro_hot" value="0" {{ ($product->pro_hot ?? 0) == 0 ? 'checked' : '' }} class="custom-control-input">
+                            <label for="rad_pro_hot_1" class="custom-control-label">{{ __('Mặc định') }}</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="rad_pro_hot_2" type="radio" name="pro_hot" value="1" {{ ($product->pro_hot ?? 0) == 1 ? 'checked' : '' }} class="custom-control-input">
+                            <label for="rad_pro_hot_2" class="custom-control-label">{{ __('Nổi bật') }}</label>
+                        </div>
+                    </div>
                     <div class="form-control">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="pro_avatar">

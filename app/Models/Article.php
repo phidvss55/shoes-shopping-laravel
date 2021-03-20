@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Article extends Model
 {
     use SoftDeletes;
-    //    use HasFactory;
     protected $table = 'articles';
-
-//    protected $fillable = [''];
     protected $guarded = [''];
 
     public function menu() {

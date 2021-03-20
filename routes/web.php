@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\MenuController;
 use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\ArticleDetailController;
 use App\Http\Controllers\Frontend\ArticleController;
+use App\Http\Controllers\Frontend\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,13 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/danh-muc/{slug}', [CategoryController::class, 'index'])->name('get.category');
 
     // Product detail
-    Route::get('/san-pham /{slug}', [ProductDetailController::class, 'index'])->name('get.product_detail');
+    Route::get('/san-pham/{slug}', [ProductDetailController::class, 'index'])->name('get.product_detail');
 
     // Menu
     Route::get('/menu/{slug}', [MenuController::class, 'index'])->name('get.menu');
+
+    // Tag
+    Route::get('/tag/{slug}', [TagController::class, 'index'])->name('get.tag');
 
     // Article
     Route::get('/bai-viet', [ArticleController::class, 'index'])->name('get.blog');

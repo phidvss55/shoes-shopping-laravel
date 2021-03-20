@@ -10,12 +10,10 @@ class Product extends Model
     use SoftDeletes;
 
     public $table = 'products';
-
-//    public $fillable = [];
     public $guarded = [];
 
-    public function categories()
+    public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'pro_category_id');
     }
 }

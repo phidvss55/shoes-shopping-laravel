@@ -10,10 +10,11 @@
             <th>ID</th>
             <th>Image</th>
             <th>Name</th>
-            <th>Slug</th>
+            <th>Category</th>
+            <th>Hot</th>
             <th>Price</th>
             <th>Time</th>
-            <th>Action</th>
+            <th class="">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -27,7 +28,13 @@
                         </a>
                     </td>
                     <td>{{ $item->pro_name }}</td>
-                    <td>{{ $item->pro_slug }}</td>
+                    <td>{{ $item->category->c_name ?? "[N/A]" }}</td>
+                    <td>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" value="0" {{ $item->pro_hot == 1 ? 'checked' : '' }}  class="custom-control-input">
+                            <label class="custom-control-label" for="">{{ __('Nổi bật') }}</label>
+                        </div>
+                    </td>
                     <td>
                         <span class="text-danger">{{ number_format($item->pro_price, 2, ',', '.') }}</span>
                     </td>
