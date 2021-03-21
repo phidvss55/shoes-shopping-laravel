@@ -21,8 +21,6 @@ use App\Http\Controllers\Frontend\TagController;
 |
 */
 
-Auth::routes();
-
 Route::group(['namespace' => 'Frontend'], function() {
     // Home - dashboard
     Route::get('/', [HomeController::class, 'index'])->name('get.home');
