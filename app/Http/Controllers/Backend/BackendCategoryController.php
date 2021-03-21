@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendCategoryRequest;
 use App\Models\Category;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class BackendCategoryController extends Controller
@@ -26,16 +27,25 @@ class BackendCategoryController extends Controller
 
     public function store(BackendCategoryRequest $request)
     {
-        $requestDatas = $request->except('_token');
+        try {
+            DB::beginTransaction();
+            $requestDatas               = $request->except('_token');
+            $requestDatas['c_slug']     = Str::slug($requestDatas['c_name']);
+            $requestDatas['created_at'] = Carbon::now();
+            $requestDatas               = call_upload_image($requestDatas, 'c_avatar');
+            $categories                 = Category::create($requestDatas);
+            if ($categories) {
+                DB::commit();
 
-        $requestDatas['c_slug']     = Str::slug($requestDatas['c_name']);
-        $requestDatas['created_at'] = Carbon::now();
-        $categories                 = Category::Create($requestDatas);
-        if ( ! $categories) {
+                return redirect()->back();
+            }
+            DB::rollBack();
             throw new \Exception('Create category is not success.');
-        }
+        } catch (\Exception $e) {
+            DB::rollback();
 
-        return redirect()->back();
+            return redirect()->back();
+        }
     }
 
     public function edit($id)
@@ -52,12 +62,23 @@ class BackendCategoryController extends Controller
 
     public function update(BackendCategoryRequest $request, $id)
     {
-        $data               = $request->except('_token');
-        $data['c_slug']     = Str::slug($data['c_name']);
-        $data['updated_at'] = Carbon::now();
-        $category           = Category::find($id);
-        if ($category) {
-            $category->update($data);
+        try {
+            DB::beginTransaction();
+            $category = Category::find($id);
+            if ( ! $category) {
+                throw new \Exception('There are something wrong here');
+            }
+
+            $requestDatas               = $request->except('_token');
+            $requestDatas['c_slug']     = Str::slug($requestDatas['c_name']);
+            $requestDatas['updated_at'] = Carbon::now();
+            $requestDatas               = call_upload_image($requestDatas, 'c_avatar');
+            $category->update($requestDatas);
+            DB::commit();
+
+            return redirect()->back();
+        } catch (\Exception $exception) {
+            DB::rollBack();
 
             return redirect()->back();
         }

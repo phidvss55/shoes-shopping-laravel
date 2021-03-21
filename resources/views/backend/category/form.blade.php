@@ -1,4 +1,4 @@
-<form action="{{ $route }}" class="p-2" method="post">
+<form action="{{ $route }}" class="p-2" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="c_name">Name</label>
@@ -17,15 +17,16 @@
             <label for="rad_c_hot_2" class="custom-control-label">{{ __('Nổi bật') }}</label>
         </div>
     </div>
-    <div class="form-control">
+    <div class="form-group">
         <div class="custom-file">
             <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="c_avatar">
             <label for="customFile" class="custom-file-label">Choose file</label>
-            @if (isset($category) && $category->c_avatar)
-                <img src="{{ pare_url_file($category->c_avatar) }}" alt="" class="img-thumbnail"
-                     style="width:100%;height:auto;max-width:100%;margin-top:15px;">
-            @endif
         </div>
+
+        @if (isset($category) && $category->c_avatar)
+            <img src="{{ pare_url_file($category->c_avatar) }}" alt="" class="img-thumbnail"
+                 style="width:100%;height:auto;max-width:100%;margin-top:15px;">
+        @endif
     </div>
-    <button type="submit" class="btn btn-primary mt-3">Save Category</button>
+    <button type="submit" class="btn btn-primary">Save Category</button>
 </form>

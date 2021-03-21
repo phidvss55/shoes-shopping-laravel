@@ -3,7 +3,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Slug</th>
+        <th>Avatar</th>
         <th>Hot</th>
         <th>Time</th>
         <th>Action</th>
@@ -15,7 +15,11 @@
             <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->c_name }}</td>
-                <td>{{ $item->c_slug }}</td>
+                <td>
+                    <a href="">
+                        <img src="{{ pare_url_file($item->c_avatar) }}" alt="{{ $item->c_name }}" class="img-thumbnail" style="width:60px;height:60px">
+                    </a>
+                </td>
                 <td>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" value="0" {{ $item->c_hot == 1 ? 'checked' : '' }}  class="custom-control-input">
