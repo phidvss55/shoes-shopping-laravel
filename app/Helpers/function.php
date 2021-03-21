@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 if ( ! function_exists('get_data_user')) {
     function get_data_user($guest, $column = 'id')
     {
-        return Auth::guard($guest)->user() ? Auth::guard()->user()->$column : null;
+        return \Auth::guard($guest)->user() ? \Auth::guard()->user()->$column : null;
     }
 }
 

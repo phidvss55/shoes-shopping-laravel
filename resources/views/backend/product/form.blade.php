@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <form action="{{ $route }}" class="p-2" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
@@ -30,6 +32,15 @@
                         @if($errors->first('pro_description'))
                             <small class="form-text text-danger">{{ $errors->first('pro_description') }}</small>
                         @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="keyword_select">Keywords - Từ khoá</label>
+                        <select name="keywords[]" id="keyword_select" class="form-control" multiple>
+                            <option value="" disabled> -- Please select tag -- </option>
+                            @foreach ($keywords as $keyword)
+                                <option value="{{ $keyword->id }}" {{ in_array($keyword->id, $keywordOld) ? 'selected' : '' }}>{{ $keyword->k_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="pro_content">Content</label>
@@ -75,16 +86,22 @@
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="pro_avatar">
                             <label for="customFile" class="custom-file-label">Choose file</label>
-                            @if (isset($product) && $product->pro_avatar)
-                                <img src="{{ pare_url_file($product->pro_avatar) }}" alt="" class="img-thumbnail"
-                                     style="width:100%;height:auto;max-width:100%;margin-top:15px;">
-                            @endif
                         </div>
+                        @if (isset($product) && $product->pro_avatar)
+                            <img src="{{ pare_url_file($product->pro_avatar) }}" alt="" class="img-thumbnail"
+                                 style="width:100%;height:auto;max-width:100%;margin-top:15px;">
+                        @endif
                     </div>
+                    <button type="submit" class="btn btn-primary mt-2 text-white">Save Data</button>
+                    <a href="{{ route('get_backend.product.index') }}" class="btn btn-default mt-2">Cancel Data</a>
                 </div>
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mt-2 text-white">Save Data</button>
-    <a href="{{ route('get_backend.product.index') }}" class="btn btn-default mt-2">Cancel Data</a>
 </form>
+
+<script>
+    $(function() {
+        $('#keyword_select').select2();
+    });
+</script>

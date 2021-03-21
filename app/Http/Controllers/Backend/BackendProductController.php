@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendProductRequest;
 use App\Models\Category;
+use App\Models\Keyword;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class BackendProductController extends Controller
@@ -26,10 +28,23 @@ class BackendProductController extends Controller
         return view($this->folder . '.index', $viewData);
     }
 
-    public function create()
+    public function assignValue()
     {
         $categories = Category::select('id', 'c_name')->get();
-        $viewData = ['categories' => $categories];
+        $keywords   = Keyword::select('id', 'k_name')->get();
+        $keywordOld = [];
+
+        return [
+            'categories' => $categories,
+            'keywords'   => $keywords,
+            'keywordOld' => $keywordOld,
+        ];
+    }
+
+    public function create()
+    {
+        $viewData = $this->assignValue();
+
         return view($this->folder . '.create', $viewData);
     }
 
@@ -37,54 +52,57 @@ class BackendProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $requestDatas = $request->except('_token');
-
+            $requestDatas               = $request->except('_token');
             $requestDatas['pro_slug']   = Str::slug($requestDatas['pro_name']);
             $requestDatas['created_at'] = Carbon::now();
-            $requestDatas = call_upload_image($requestDatas, 'pro_avatar');
+            $requestDatas               = call_upload_image($requestDatas, 'pro_avatar');
+            $product = Product::create($requestDatas);
 
-            $product                    = Product::Create($requestDatas);
             if ( ! $product) {
                 throw new \Exception('Create product is not success.');
             }
+            $product->keywords()->attach($requestDatas['keywords']);
             DB::commit();
-            return redirect()->back();
+
+            return redirect()->route('get_backend.product.index');
         } catch (\Exception $exception) {
             DB::rollBack();
+
             return $exception->getMessage();
         }
-
     }
 
     public function edit($id)
     {
-        $categories = Category::select('id', 'c_name')->get();
-        $product    = Product::find($id);
-        $viewData   = [
-            'categories' => $categories,
-            'product'    => $product,
-        ];
+        $product             = Product::find($id);
+        $viewData            = $this->assignValue();
+        $viewData['product'] = $product;
 
         return view($this->folder . '.update', $viewData);
     }
 
     public function update(BackendProductRequest $request, $id)
     {
-        $requestDatas = $request->all();
-        $product = new Product();
-        if ($id) {
-            $product = Product::find($id);
-        }
-        $requestDatas['pro_slug']   = Str::slug($requestDatas['pro_name']);
-        $requestDatas['updated_at'] = Carbon::now();
-        $requestDatas = call_upload_image($requestDatas, 'pro_avatar');
+        try {
+            DB::beginTransaction();
+            $requestDatas = $request->except('_token');
+            $product      = Product::find($id);
+            if ( ! $product) {
+                abort(404);
+            }
+            $requestDatas['pro_slug']   = Str::slug($requestDatas['pro_name']);
+            $requestDatas['updated_at'] = Carbon::now();
+            $requestDatas               = call_upload_image($requestDatas, 'pro_avatar');
+            $product->update($requestDatas);
 
-        $product->update($requestDatas);
-        if ( ! $product) {
-            throw new \Exception('Update product is not success.');
+            $product->keywords()->sync($requestDatas['keywords']);
+            DB::commit();
+            return redirect()->route('get_backend.product.index');
+        } catch (\Exception $exception) {
+            Log::info('[Exception] ' . $exception->getMessage());
+            DB::rollBack();
+            return redirect()->back();
         }
-
-        return redirect()->back();
     }
 
     public function delete($id)

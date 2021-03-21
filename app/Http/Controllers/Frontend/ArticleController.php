@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Frontend\BlogBaseController;
 use App\Models\Article;
-use PhpParser\Error;
-use Symfony\Component\Process\ExecutableFinder;
 
 class ArticleController extends BlogBaseController
 {

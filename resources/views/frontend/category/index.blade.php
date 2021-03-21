@@ -17,6 +17,9 @@
                                 @if(isset($category))
                                     <li class="breadcrumb-item active" aria-current="page">{{ $category->c_name }}</li>
                                 @endif
+                                @if(isset($keyword))
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $keyword->k_name }}</li>
+                                @endif
                             </ol>
                         </nav>
                     </div>
@@ -71,7 +74,7 @@
                                     <div class="mb-3 position-relative">
                                         <div class="badge text-white badge-"></div>
                                         <a class="d-block" href="{{ route('get.product_detail', ['slug' => $item->pro_slug]) }}">
-                                            <img class="img-fluid w-100" src="{{ pare_url_file($item->pro_avatar) }}" alt="{{ $item->pro_name }}">
+                                            <img class="img-fluid w-100" src="{{ pare_url_file($item->pro_avatar) }}" alt="{{ $item->pro_name }}" style="height:300px">
                                         </a>
                                         <div class="product-overlay">
                                             <ul class="mb-0 list-inline">

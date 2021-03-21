@@ -8,6 +8,19 @@
         @endif
     </div>
     <div class="form-group">
+        <label for="c_parent_id">Parent category</label>
+        <select name="c_parent_id" id="c_parent_id" class="form-control">
+            <option value="" disabled selected> -- {{ __('Please select parent category') }} --</option>
+            @foreach ($categoryParent as $item)
+                <option value="{{ $item->id }}" {{ old('c_parent_id', $category->c_parent_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->c_name
+                                }}</option>
+            @endforeach
+        </select>
+        @if($errors->first('c_parent_id'))
+            <small class="form-text text-danger">{{ $errors->first('pro_category_id') }}</small>
+        @endif
+    </div>
+    <div class="form-group">
         <div class="custom-control custom-radio custom-control-inline">
             <input id="rad_c_hot_1" type="radio" name="c_hot" value="0" {{ ($category->c_hot ?? 0) == 0 ? 'checked' : '' }} class="custom-control-input">
             <label for="rad_c_hot_1" class="custom-control-label">{{ __('Mặc định') }}</label>

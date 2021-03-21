@@ -10,6 +10,7 @@ class Article extends Model
     use SoftDeletes;
     protected $table = 'articles';
     protected $guarded = [''];
+    public $timestamps = true;
 
     public function menu() {
         return $this->belongsTo(Menu::class, 'a_menu_id');

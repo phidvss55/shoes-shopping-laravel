@@ -3,6 +3,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Parent</th>
         <th>Avatar</th>
         <th>Hot</th>
         <th>Time</th>
@@ -15,6 +16,7 @@
             <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->c_name }}</td>
+                <td>{{ $item->parent->c_name ?? '__ Root __' }}</td>
                 <td>
                     <a href="">
                         <img src="{{ pare_url_file($item->c_avatar) }}" alt="{{ $item->c_name }}" class="img-thumbnail" style="width:60px;height:60px">

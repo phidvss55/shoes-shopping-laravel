@@ -10,7 +10,18 @@ class Category extends Model
 
     protected $guarded = [''];
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'c_parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'c_parent_id');
     }
 }

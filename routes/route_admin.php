@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\BackendUserController;
 use App\Http\Controllers\Backend\BackendSettingController;
 use App\Http\Controllers\Backend\BackendTagController;
 use App\Http\Controllers\Backend\BackendProfileController;
+use App\Http\Controllers\Backend\BackendSlideController;
 
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
@@ -53,6 +54,19 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
         Route::post('/update/{id}', [BackendArticleController::class, 'update']);
 
         Route::get('/delete/{id}', [BackendArticleController::class, 'delete'])->name('get_backend.article.delete');
+    });
+
+    // Slide
+    Route::prefix('slide')->group(function() {
+        Route::get('', [BackendSlideController::class, 'index'])->name('get_backend.slide.index');
+
+        Route::get('/create', [BackendSlideController::class, 'create'])->name('get_backend.slide.create');
+        Route::post('/create', [BackendSlideController::class, 'store'])->name('get_backend.slide.store');
+
+        Route::get('/update/{id}', [BackendSlideController::class, 'edit'])->name('get_backend.slide.update');
+        Route::post('/update/{id}', [BackendSlideController::class, 'update']);
+
+        Route::get('/delete/{id}', [BackendSlideController::class, 'delete'])->name('get_backend.slide.delete');
     });
 
     // Keyword

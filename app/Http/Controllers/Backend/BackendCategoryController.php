@@ -15,11 +15,11 @@ class BackendCategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::orderByDesc('id')->get();
-        $category   = new Category();
-        $viewData   = [
-            'categories' => $categories,
-            'category'   => $category,
+        $categories     = Category::with('parent:id,c_name')->orderByDesc('id')->get();
+        $categoryParent = Category::where('c_parent_id', config('constant.parent_id'))->get();
+        $viewData       = [
+            'categories'     => $categories,
+            'categoryParent' => $categoryParent,
         ];
 
         return view($this->folder . '.index', $viewData);
@@ -50,11 +50,13 @@ class BackendCategoryController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::orderByDesc('id')->get();
-        $category   = Category::find($id);
-        $viewData   = [
-            'categories' => $categories,
-            'category'   => $category,
+        $categories     = Category::with('parent:id,c_name')->orderByDesc('id')->get();
+        $category       = Category::find($id);
+        $categoryParent = Category::where('c_parent_id', config('constant.parent_id'))->get();
+        $viewData = [
+            'categories'     => $categories,
+            'category'       => $category,
+            'categoryParent' => $categoryParent,
         ];
 
         return view($this->folder . '.update', $viewData);

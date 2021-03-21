@@ -28,6 +28,10 @@ return [
                 'route' => 'get_backend.menu.index'
             ],
             [
+                'name'  => 'Slide',
+                'route' => 'get_backend.slide.index'
+            ],
+            [
                 'name'  => 'Bài viết',
                 'route' => 'get_backend.article.index'
             ],

@@ -1115,6 +1115,11 @@ a.text-hover-dark:focus, a.text-hover-dark:hover {
 .reset-anchor {
     color: inherit;
     transition: all 0.3s;
+    /*min-height: 40px;*/
+    /*display: block;*/
+}
+
+.fix-reset-anchor {
     min-height: 40px;
     display: block;
 }

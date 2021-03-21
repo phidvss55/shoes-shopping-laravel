@@ -3,26 +3,26 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Frontend\ProductBaseController;
-use App\Models\Category;
+use App\Models\Keyword;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CategoryController extends ProductBaseController
+class KeywordController extends Controller
 {
     public function index(Request $request, $slug)
     {
-        $category = Category::where('c_slug', $slug)->first();
-        if ( ! $category) {
+        $keyword = Keyword::where('k_slug', $slug)->first();
+        if ( ! $keyword) {
             abort(404);
         }
-        $products = Product::where('pro_category_id', $category->id)
+        $products = Product::whereHas('keywords', function ($query) use ($keyword) {
+            $query->where('pk_keyword_id', $keyword->id);
+        })
                            ->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_avatar')
                            ->paginate(12);
         $viewData = [
-            'title'    => $category->c_name,
-            'category' => $category,
-            'categoriesSort' => $this->getCategoriesSort(),
+            'title'    => $keyword->k_name,
+            'keyword'  => $keyword,
             'products' => $products,
         ];
 
