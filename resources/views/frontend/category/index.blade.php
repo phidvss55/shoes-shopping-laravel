@@ -32,10 +32,20 @@
                     <!-- SHOP SIDEBAR-->
                     <div class="col-lg-3 order-2 order-lg-1">
                         <h5 class="text-uppercase mb-4">Categories</h5>
-                        <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">Fashion &amp; Acc</strong></div>
-                        <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            <li class="mb-2"><a class="reset-anchor" href="#">Women's T-Shirts</a></li>
-                        </ul>
+                        @foreach ($categoriesSort as $items)
+                        <div class="py-2 px-4 bg-dark text-white mb-3">
+                            <strong class="small text-uppercase font-weight-bold">{{ $items->c_name }}</strong>
+                        </div>
+                            @if (isset($items->children) && !$items->children->isEmpty())
+                            <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
+                                @foreach ($items->children as $item)
+                                    <li class="mb-2">
+                                        <a class="reset-anchor" href="{{ route('get.category', ['slug' => $item->c_slug]) }}">{{ $item->c_name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        @endforeach
 
                         <h6 class="text-uppercase mb-4">{{ __('Khoảng giá') }}</h6>
                         <div class="price-range pt-4 mb-5">
@@ -85,7 +95,7 @@
                                                     <a class="btn btn-sm btn-dark" href="">Add to cart</a>
                                                 </li>
                                                 <li class="list-inline-item mr-0">
-                                                    <a class="btn btn-sm btn-outline-dark" href="" data-toggle="modal"><i class="fas fa-expand"></i></a>
+                                                    <a class="btn btn-sm btn-outline-dark" href="{{ route('get_ajax.product_preview', $item->id) }}" data-toggle="modal"><i class="fas fa-expand"></i></a>
                                                 </li>
                                             </ul>
                                         </div>

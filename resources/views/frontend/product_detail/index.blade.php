@@ -183,7 +183,7 @@
                                     <a class="btn btn-sm btn-dark" href="#">Add to cart</a>
                                 </li>
                                 <li class="list-inline-item mr-0">
-                                    <a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a>
+                                    <a class="btn btn-sm btn-outline-dark" href="{{ route('get_ajax.product_preview', $item->id) }}" data-toggle="modal"><i class="fas fa-expand"></i></a>
                                 </li>
                             </ul>
                         </div>

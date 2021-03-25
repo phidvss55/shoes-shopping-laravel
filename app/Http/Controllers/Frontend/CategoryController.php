@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Frontend\ProductBaseController;
 use App\Models\Category;
 use App\Models\Product;

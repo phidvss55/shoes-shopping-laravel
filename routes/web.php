@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\ArticleDetailController;
 use App\Http\Controllers\Frontend\ArticleController;
 use App\Http\Controllers\Frontend\TagController;
 use App\Http\Controllers\Frontend\KeywordController;
+use App\Http\Controllers\Frontend\Ajax\AjaxViewProductController;
 
 Route::group(['namespace' => 'Frontend'], function () {
     // Auth
@@ -49,6 +50,10 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     // Article_detail
     Route::get('/bai-viet/{slug}', [ArticleDetailController::class, 'index'])->name('get.article_detail');
+
+    Route::group(['namespace' => 'Ajax'], function() {
+        Route::post('/view-product/{id}', [AjaxViewProductController::class, 'getPreviewProudct'])->name('get_ajax.product_preview');
+    });
 });
 
 include('route_admin.php');
