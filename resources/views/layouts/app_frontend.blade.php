@@ -60,7 +60,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('get.shopping') }}" title="Carts">
-                                <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">({{ \Cart::count() }})</small></a>
+                                <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart <small class="text-gray">({{ \Cart::count() }})</small></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a>
@@ -180,15 +180,22 @@
                 });
             });
 
-            $('.js-add-cart').click(function(e) {
+            $('.body').on('js-add-cart', 'click', function(e) {
                 e.preventDefault();
                 let $this = $(this);
                 let url = $this.attr('href');
+                let qty = 1;
+                let $elementQty = $this.parents('.box-qty').find('.val-qty');
+                if ($elementQty.length) {
+                    qty = $elementQty.val();
+                }
+                console.log(qty);
                 $.ajax({
                     method: "post",
                     url: url,
                     data: {
                         "_token": "{{ csrf_token() }}",
+                        qty: qty
                     }
                 }).done(function (result) {
                     console.log(result)

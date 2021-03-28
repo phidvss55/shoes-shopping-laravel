@@ -14,8 +14,17 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('t_user_id')->default(\App\Enums\ActiveStatus::INACTIVE)->index();
+            $table->integer('t_total_money')->default(\App\Enums\ActiveStatus::INACTIVE);
+            $table->string('t_name')->nullable();
+            $table->string('t_email')->nullable();
+            $table->string('t_phone')->nullable();
+            $table->string('t_address')->nullable();
+            $table->string('t_note')->nullable();
+            $table->tinyInteger('t_status')->default(\App\Enums\ActiveStatus::ACTIVE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

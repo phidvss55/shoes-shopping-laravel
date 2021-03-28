@@ -26,6 +26,10 @@
                             <input name="t_address" class="form-control form-control-lg" id="address" type="text" placeholder="House number and street name">
                         </div>
                         <div class="col-lg-12 form-group">
+                            <label class="text-small text-uppercase" for="address">Note</label>
+                            <textarea name="t_note" class="form-control form-control-lg" cols="30" rows="3" placeholder="Your note"></textarea>
+                        </div>
+                        <div class="col-lg-12 form-group">
                             <button class="btn btn-dark" type="submit">Payment</button>
                         </div>
                     </div>
@@ -39,12 +43,12 @@
                         <ul class="list-unstyled mb-0">
                             <li class="d-flex align-items-center justify-content-between">
                                 <strong class="small font-weight-bold">Subtotal</strong>
-                                <span class="text-muted small">{{ Cart::priceTotal(0) }}</span>
+                                <span class="text-muted small">{{ Cart::subtotal(0) }}</span>
                             </li>
                             <li class="border-bottom my-2"></li>
                             <li class="d-flex align-items-center justify-content-between">
                                 <strong class="text-uppercase small font-weight-bold">Total</strong>
-                                <span>{{ Cart::subtotal(0) }}</span>
+                                <span>{{ Cart::priceTotal(0) }}</span>
                             </li>
                         </ul>
                     </div>

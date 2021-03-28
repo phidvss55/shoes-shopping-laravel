@@ -33,6 +33,7 @@ class AjaxShoppingCartController extends Controller
     public function add(Request $request, $id)
     {
         if ($request->ajax()) {
+            $qty = $request->qty;
             $product = Product::find($id);
             if ( ! $product) {
                 return response()->json([
@@ -53,7 +54,7 @@ class AjaxShoppingCartController extends Controller
             });
             if ($idCartProduct) {
                 $productByCart = \Cart::get($idCartProduct);
-                if ($product->pro_number < ($productByCart->qty + 1)) {
+                if ($product->pro_number < ($productByCart->qty + $qty)) {
                     return response()->json([
                         'status'    => '200',
                         'message' => 'Sorry, number of products is not enought. Please wait for another update',
@@ -64,7 +65,7 @@ class AjaxShoppingCartController extends Controller
             \Cart::add([
                 'id'      => $product->id,
                 'name'    => $product->pro_name,
-                'qty'     => 1,
+                'qty'     => $qty,
                 'price'   => $product->pro_price,
                 'weight'  => '1',
                 'options' => [
