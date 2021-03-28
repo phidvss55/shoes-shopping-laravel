@@ -12,7 +12,9 @@ use App\Http\Controllers\Frontend\ArticleDetailController;
 use App\Http\Controllers\Frontend\ArticleController;
 use App\Http\Controllers\Frontend\TagController;
 use App\Http\Controllers\Frontend\KeywordController;
+use App\Http\Controllers\Frontend\ShoppingCartController;
 use App\Http\Controllers\Frontend\Ajax\AjaxViewProductController;
+use App\Http\Controllers\Frontend\Ajax\AjaxShoppingCartController;
 
 Route::group(['namespace' => 'Frontend'], function () {
     // Auth
@@ -50,9 +52,13 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     // Article_detail
     Route::get('/bai-viet/{slug}', [ArticleDetailController::class, 'index'])->name('get.article_detail');
+    Route::get('cart', [ShoppingCartController::class, 'index'])->name('get.shopping');
+    Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('get.shopping.checkout');
+    Route::post('/checkout', [ShoppingCartController::class, 'payment']);
 
     Route::group(['namespace' => 'Ajax'], function() {
         Route::post('/view-product/{id}', [AjaxViewProductController::class, 'getPreviewProudct'])->name('get_ajax.product_preview');
+        Route::post('add/cart/{id}', [AjaxShoppingCartController::class, 'add'])->name('get_ajax.shopping.add');
     });
 });
 

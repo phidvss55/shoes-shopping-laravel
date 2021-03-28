@@ -59,7 +59,8 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="cart.html"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(2)</small></a>
+                            <a class="nav-link" href="{{ route('get.shopping') }}" title="Carts">
+                                <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">({{ \Cart::count() }})</small></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a>
@@ -176,6 +177,21 @@
                             show: true
                         });
                     }
+                });
+            });
+
+            $('.js-add-cart').click(function(e) {
+                e.preventDefault();
+                let $this = $(this);
+                let url = $this.attr('href');
+                $.ajax({
+                    method: "post",
+                    url: url,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    }
+                }).done(function (result) {
+                    console.log(result)
                 });
             });
         });

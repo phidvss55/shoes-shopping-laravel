@@ -18,12 +18,12 @@
                                 <a class="btn btn-sm btn-outline-dark" href=""><i class="far fa-heart"></i></a>
                             </li>
                             <li class="list-inline-item m-0 p-0">
-                                <a class="btn btn-sm btn-dark" href="">Add to cart</a>
+                                <a class="btn btn-sm btn-dark js-add-cart" href="{{ route('get_ajax.shopping.add', $item->id) }}">Add to cart</a>
                             </li>
                             <li class="list-inline-item mr-0">
-                                <a class="btn btn-sm btn-outline-dark ajax-preview-product" href="{{ route('get_ajax.product_preview', $item->id) }}" data-toggle="modal"><i
-                                        class="fas
-                                fa-expand"></i></a>
+                                <a class="btn btn-sm btn-outline-dark ajax-preview-product" href="{{ route('get_ajax.product_preview', $item->id) }}" data-toggle="modal">
+                                    <i class="fas fa-expand"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -31,7 +31,7 @@
                 <h6> <a class="reset-anchor" title="{{ $item->pro_name }}" href="{{ route('get.product_detail', ['slug' => $item->pro_slug]) }}">{{ $item->pro_name }}</a></h6>
                 <p class="small text-muted">{{ number_format($item->pro_price, 0, ',', '.') }} VNĐ</p>
             </div>
-        </div>
+        </div>0l
         @endforeach
     </div>
 </section>
