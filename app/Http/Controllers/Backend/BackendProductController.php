@@ -95,7 +95,9 @@ class BackendProductController extends Controller
             $requestDatas               = call_upload_image($requestDatas, 'pro_avatar');
             $product->update($requestDatas);
 
-            $product->keywords()->sync($requestDatas['keywords']);
+            if (isset($requestDatas['keywords'])) {
+                $product->keywords()->sync($requestDatas['keywords']);
+            }
             DB::commit();
             return redirect()->route('get_backend.product.index');
         } catch (\Exception $exception) {

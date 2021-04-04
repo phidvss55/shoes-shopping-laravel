@@ -128,7 +128,7 @@
                         <p class="small text-muted mb-0">&copy; 2020 All rights reserved.</p>
                     </div>
                     <div class="col-lg-6 text-lg-right">
-                        <p class="small text-muted mb-0">Template designed by <a class="text-white reset-anchor" href="https://bootstraptemple.com/p/bootstrap-ecommerce">Bootstrap Temple</a></p>
+{{--                        <p class="small text-muted mb-0">Template designed by <a class="text-white reset-anchor" href="https://bootstraptemple.com/p/bootstrap-ecommerce">Bootstrap Temple</a></p>--}}
                     </div>
                 </div>
             </div>
@@ -160,6 +160,12 @@
     </script>
     <script>
         $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $('.ajax-preview-product').click(function(e) {
                 e.preventDefault();
                 let $this = $(this)
@@ -171,7 +177,6 @@
                         "_token": "{{ csrf_token() }}",
                     }
                 }).done(function (result) {
-                    console.log(result)
                     if (result.status === 200) {
                         $('#productView').html(result.html).modal({
                             show: true
@@ -180,7 +185,7 @@
                 });
             });
 
-            $('.body').on('js-add-cart', 'click', function(e) {
+            $('body').on('click', '.js-add-cart', function(e) {
                 e.preventDefault();
                 let $this = $(this);
                 let url = $this.attr('href');
@@ -189,7 +194,6 @@
                 if ($elementQty.length) {
                     qty = $elementQty.val();
                 }
-                console.log(qty);
                 $.ajax({
                     method: "post",
                     url: url,
@@ -199,6 +203,44 @@
                     }
                 }).done(function (result) {
                     console.log(result)
+                });
+            });
+
+            $('body').on('click', '.js-delete-cart', function(e) {
+                e.preventDefault();
+                let $this = $(this);
+                let url = $this.attr('href');
+                $.ajax({
+                    method: "post",
+                    url: url,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    }
+                }).done(function (result) {
+                    console.log(result)
+                    if (result.status === 200) {
+                        $this.parents('tr').remove()
+                    }
+                });
+            });
+
+            $('body').on('click', '.js-update-cart', function(e) {
+                e.preventDefault();
+                let $this = $(this);
+                let url = $this.attr('href');
+                let $elementQty = $this.parents('tr').find('.val-qty');
+                let qty = $elementQty ? $elementQty.val() : 1;
+
+                $.ajax({
+                    method: "post",
+                    url: url,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        'qty': qty
+                    }
+                }).done(function (result) {
+
+                    console.log(result);
                 });
             });
         });

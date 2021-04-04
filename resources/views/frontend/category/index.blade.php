@@ -31,7 +31,16 @@
                 <div class="row">
                     <!-- SHOP SIDEBAR-->
                     <div class="col-lg-3 order-2 order-lg-1">
-                        <h5 class="text-uppercase mb-4">Categories</h5>
+                        <h6 class="text-uppercase mb-4">Search</h6>
+
+                        <div>
+                            <form action="">
+                                <input type="text" class="form-control" placeholder="Search ... " name="k" />
+                                <button type="submit" class="btn btn-primary btn-sm d-block mt-2 mb-4 w-100"> Search </button>
+                            </form>
+                        </div>
+
+                        <h6 class="text-uppercase mb-4">Categories</h6>
                         @foreach ($categoriesSort as $items)
                         <div class="py-2 px-4 bg-dark text-white mb-3">
                             <strong class="small text-uppercase font-weight-bold">{{ $items->c_name }}</strong>
@@ -92,7 +101,7 @@
                                                     <a class="btn btn-sm btn-outline-dark" href=""><i class="far fa-heart"></i></a>
                                                 </li>
                                                 <li class="list-inline-item m-0 p-0">
-                                                    <a class="btn btn-sm btn-dark" href="">Add to cart</a>
+                                                    <a class="js-add-cart btn btn-sm btn-dark" href="{{ route('get_ajax.shopping.add', $item->id) }}">Add to cart</a>
                                                 </li>
                                                 <li class="list-inline-item mr-0">
                                                     <a class="btn btn-sm btn-outline-dark" href="{{ route('get_ajax.product_preview', $item->id) }}" data-toggle="modal"><i class="fas fa-expand"></i></a>

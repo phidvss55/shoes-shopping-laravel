@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\BackendSettingController;
 use App\Http\Controllers\Backend\BackendTagController;
 use App\Http\Controllers\Backend\BackendProfileController;
 use App\Http\Controllers\Backend\BackendSlideController;
+use App\Http\Controllers\Backend\BackendTransactionController;
+use App\Http\Controllers\Backend\BackendOrderController;
 
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
@@ -106,6 +108,21 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
         Route::post('/update/{id}', [BackendTagController::class, 'update']);
 
         Route::get('/delete/{id}', [BackendTagController::class, 'delete'])->name('get_backend.tag.delete');
+    });;
+
+    // Tag
+    Route::prefix('transaction')->group(function() {
+        Route::get('', [BackendTransactionController::class, 'index'])->name('get_backend.transaction.index');
+
+        Route::post('action/{id}', [BackendTransactionController::class, 'action'])->name('get_backend.transaction.action');
+
+        Route::get('view/{id}', [BackendTransactionController::class, 'view'])->name('get_backend.transaction.view');
+        Route::get('/delete/{id}', [BackendTransactionController::class, 'delete'])->name('get_backend.transaction.delete');
+    });;
+
+    // Order
+    Route::prefix('order')->group(function() {
+        Route::get('/delete/{id}', [BackendOrderController::class, 'delete'])->name('get_backend.order.delete');
     });;
 
     // User

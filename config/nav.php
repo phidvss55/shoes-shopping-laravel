@@ -36,6 +36,10 @@ return [
                 'route' => 'get_backend.article.index'
             ],
             [
+                'name'  => 'Đơn hàng',
+                'route' => 'get_backend.transaction.index'
+            ],
+            [
                 'name'  => 'Người dùng',
                 'route' => 'get_backend.user.index'
             ]

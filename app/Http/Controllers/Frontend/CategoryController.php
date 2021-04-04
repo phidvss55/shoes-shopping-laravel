@@ -15,14 +15,19 @@ class CategoryController extends ProductBaseController
         if ( ! $category) {
             abort(404);
         }
-        $products = Product::where('pro_category_id', $category->id)
-                           ->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_avatar')
-                           ->paginate(12);
+        $products = Product::where('pro_category_id', $category->id);
+        if ($name = $request->k) {
+            $products->where('pro_name', 'like', '%' . $name . '%');
+        }
+        $products = $products->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_avatar')
+                             ->paginate(12);
+
         $viewData = [
-            'title'    => $category->c_name,
-            'category' => $category,
+            'title'          => $category->c_name,
+            'category'       => $category,
+            'query'          => $request->query,
             'categoriesSort' => $this->getCategoriesSort(),
-            'products' => $products,
+            'products'       => $products,
         ];
 
         return view('frontend.category.index', $viewData);

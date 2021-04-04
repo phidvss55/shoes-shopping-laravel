@@ -59,6 +59,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::group(['namespace' => 'Ajax'], function() {
         Route::post('/view-product/{id}', [AjaxViewProductController::class, 'getPreviewProudct'])->name('get_ajax.product_preview');
         Route::post('add/cart/{id}', [AjaxShoppingCartController::class, 'add'])->name('get_ajax.shopping.add');
+        Route::post('delete/cart/{id}', [AjaxShoppingCartController::class, 'delete'])->name('get_ajax.shopping.delete');
+
+        Route::post('update/cart/{id}', [AjaxShoppingCartController::class, 'update'])->name('get_ajax.shopping.update');
     });
 });
 

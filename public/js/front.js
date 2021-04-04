@@ -1,9 +1,4 @@
 $(function () {
-
-
-    /* ===============================================================
-         LIGHTBOX
-      =============================================================== */
     lightbox.option({
         'resizeDuration': 200,
         'wrapAround': true
@@ -24,16 +19,16 @@ $(function () {
 
 
     /* ===============================================================
-         PRODUCT QUNATITY
+         PRODUCT QUANTITY
       =============================================================== */
-      $('.dec-btn').click(function () {
+      $('body').on('click', '.dec-btn', function () {
           var siblings = $(this).siblings('input');
           if (parseInt(siblings.val(), 10) >= 1) {
               siblings.val(parseInt(siblings.val(), 10) - 1);
           }
       });
 
-      $('.inc-btn').click(function () {
+      $('body').on('click', '.inc-btn', function () {
           var siblings = $(this).siblings('input');
           siblings.val(parseInt(siblings.val(), 10) + 1);
       });

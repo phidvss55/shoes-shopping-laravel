@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Session;
-use League\CommonMark\Extension\TableOfContents\Normalizer\AsIsNormalizerStrategy;
 
 class AjaxShoppingCartController extends Controller
 {
@@ -32,7 +31,8 @@ class AjaxShoppingCartController extends Controller
 
     public function add(Request $request, $id)
     {
-        if ($request->ajax()) {
+        if ($request->ajax())
+        {
             $qty = $request->qty;
             $product = Product::find($id);
             if ( ! $product) {
@@ -78,6 +78,28 @@ class AjaxShoppingCartController extends Controller
                 'status'    => '200',
                 'message' => 'Add product to cart successful.',
             ]);
+        }
+    }
+
+    public function delete(Request $request, $id)
+    {
+        if ($request->ajax())
+        {
+            \Cart::remove($id);
+            return response()->json([
+                'status' => 200
+            ]);
+        }
+    }
+
+    public function update($id, Request $request)
+    {
+        if ($request->ajax()) {
+
+            \Cart::update($id, $request->qty); // Will update the quantity
+            return [
+                'status' => 200
+            ];
         }
     }
 }

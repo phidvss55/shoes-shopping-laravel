@@ -31,21 +31,21 @@
                                 <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Price</strong></th>
                                 <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Quantity</strong></th>
                                 <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Total</strong></th>
-                                <th class="border-0" scope="col"> </th>
+                                <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Action</strong></th>
                             </tr>
                             </thead>
                             <tbody>
                             @if (isset($products))
-                                @foreach ($products as $item)
+                                @foreach ($products as $row => $item)
                                     <tr>
                                         <th class="pl-0 border-0" scope="row">
                                             <div class="media align-items-center">
-                                                <a class="reset-anchor d-block animsition-link" href="detail.html">
+                                                <a class="reset-anchor d-block animsition-link" href="#">
                                                     <img src="{{ pare_url_file($item->options->image) }}" alt="{{ $item->name }}" width="70">
                                                 </a>
                                                 <div class="media-body ml-3">
                                                     <strong class="h6">
-                                                        <a class="reset-anchor animsition-link" href="detail.html">{{ $item->name }}</a>
+                                                        <a class="reset-anchor animsition-link" href="#">{{ $item->name }}</a>
                                                     </strong>
                                                 </div>
                                             </div>
@@ -58,7 +58,7 @@
                                                 <span class="small text-uppercase text-gray headings-font-family">Quantity</span>
                                                 <div class="quantity">
                                                     <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                                                    <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="{{ $item->qty }}">
+                                                    <input class="form-control form-control-sm border-0 shadow-0 p-0 val-qty" type="text" value="{{ $item->qty }}">
                                                     <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                                                 </div>
                                             </div>
@@ -67,7 +67,10 @@
                                             <p class="mb-0 small">{{ number_format($item->price * $item->qty) }} VND</p>
                                         </td>
                                         <td class="align-middle border-0">
-                                            <a class="reset-anchor" href="#"><i class="fas fa-trash-alt small text-muted"></i></a>
+                                            <a class="reset-anchor js-update-cart ml-1" href="{{ route('get_ajax.shopping.update', $row) }}"><i class="fas fa-pen small
+                                            text-muted"></i></a>
+                                            <a class="reset-anchor js-delete-cart ml-2" href="{{ route('get_ajax.shopping.delete', $row) }}"><i class="fas fa-trash-alt small
+                                            text-muted"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -46,15 +46,33 @@
     @yield('content')
 </main>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<!--<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"><\/script>')</script>-->
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script>
+    $(function() {
+        $('body').on('click', '.btn-action-status', function(e) {
+            e.preventDefault();
+            let $this = $(this)
+            let url = $this.attr('href');
+            let status = $this.data('status');
+            $.ajax({
+                method: "post",
+                url: url,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    status: status
+                }
+            }).done(function (result) {
+                location.reload();
+            });
+        });
+    });
+</script>
 </body>
 </html>
