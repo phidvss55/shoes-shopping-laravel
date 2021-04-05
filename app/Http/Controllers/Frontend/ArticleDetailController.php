@@ -14,8 +14,12 @@ class ArticleDetailController extends BlogBaseController
         if ( ! $article) {
             return abort(404);
         }
+        $articleNext = Article::where('id', '<', $article->id)->limit(1)->orderBy('id', 'desc')->first();
+        $articlePrev = Article::where('id', '>', $article->id)->limit(1)->orderBy('id', 'asc')->first();
         $viewData = [
             'article'        => $article,
+            'articleNext'    => $articleNext,
+            'articlePrev'    => $articlePrev,
             'tags'           => $this->getTags(),
             'articlesLatest' => $this->getArticleLatest(),
             'menus'          => $this->getMenus(),

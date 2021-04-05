@@ -23,9 +23,9 @@ class ShoppingCartController extends Controller
     public function checkout() {
         $products = \Cart::content();
         $user = User::find(get_data_user('web'));
-
         $viewData = [
-            'products' => $products
+            'user'      => $user,
+            'products'  => $products
         ];
         return view('frontend.shopping.checkout', $viewData);
     }
@@ -34,6 +34,7 @@ class ShoppingCartController extends Controller
     {
         $dataTransaction = $request->except('_token');
         $dataTransaction['created_at'] = Carbon::now();
+        $dataTransaction['t_user_id'] = get_data_user('web') ?? 0;
         $dataTransaction['t_total_money'] = (int)str_replace(',', '', \Cart::priceTotal(0));
 
         $transaction = Transaction::create($dataTransaction);

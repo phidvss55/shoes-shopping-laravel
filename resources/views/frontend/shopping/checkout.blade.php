@@ -11,15 +11,19 @@
                     <div class="row">
                         <div class="col-lg-6 form-group">
                             <label class="text-small text-uppercase" for="firstName">Name</label>
-                            <input name="t_name" required class="form-control form-control-lg" id="firstName" type="text" placeholder="Enter your first name">
+                            <input name="t_name" value="{{ $user->name ?? '' }}" required class="form-control form-control-lg" id="firstName" type="text" placeholder="Enter your
+                            first
+                            name">
                         </div>
                         <div class="col-lg-6 form-group">
                             <label class="text-small text-uppercase" for="lastName">Email address</label>
-                            <input name="t_email" required class="form-control form-control-lg" id="lastName" type="text" placeholder="Enter your last name">
+                            <input name="t_email" value="{{ $user->email ?? '' }}" required class="form-control form-control-lg" id="lastName" type="text" placeholder="Enter your
+                                                                                                                            last name">
                         </div>
                         <div class="col-lg-6 form-group">
                             <label class="text-small text-uppercase" for="phone">Phone number</label>
-                            <input name="t_phone" required class="form-control form-control-lg" id="phone" type="tel" placeholder="e.g. +02 245354745">
+                            <input name="t_phone" value="{{ $user->phone ?? '' }}" required class="form-control form-control-lg" id="phone" type="tel" placeholder="e.g. +02
+                            245354745">
                         </div>
                         <div class="col-lg-12 form-group">
                             <label class="text-small text-uppercase" for="address">Address line</label>

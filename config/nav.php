@@ -44,5 +44,13 @@ return [
                 'route' => 'get_backend.user.index'
             ]
         ]
+    ],
+    'user' => [
+        [
+
+            'name' => 'Tổng quan',
+            'route' => 'get_user.home',
+            'icon' => 'fa-th-large'
+        ]
     ]
 ];

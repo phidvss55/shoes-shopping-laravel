@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Admin extends Model
 {
-//    use HasFactory, SoftDelete;
+    use SoftDeletes;
     protected $table = 'admins';
-
-//    protected $fillable = [''];
     protected $guarded = [''];
 }
