@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\User\UserTransactionController;
+use App\Http\Controllers\User\UserOrderController;
 
 Route::group([
     'namespace' => 'User',
@@ -10,9 +13,20 @@ Route::group([
     // Trang chu
     Route::get('/', [UserController::class, 'index'])->name('get_user.home');
 
-    // Category
-    Route::prefix('category')->group(function () {
-//        Route::get('', [BackendCategoryController::class, 'index'])->name('get_backend.category.index');
+    Route::get('porfile/{id}', [UserProfileController::class, 'index'])->name('get_user.profile');
+    Route::post('porfile/{id}', [UserProfileController::class, 'update']);
 
-    });
+    Route::prefix('transaction')->group(function() {
+        Route::get('', [UserTransactionController::class, 'index'])->name('get_user.transaction.index');
+        Route::get('view/{id}', [UserTransactionController::class, 'view'])->name('get_user.transaction.view');
+
+        Route::post('action/{id}', [UserTransactionController::class, 'action'])->name('get_user.transaction.action');
+
+        Route::get('/delete/{id}', [UserTransactionController::class, 'delete'])->name('get_user.transaction.delete');
+    });;
+
+    Route::prefix('order')->group(function() {
+        Route::get('/delete/{id}', [UserOrderController::class, 'delete'])->name('get_user.order.delete');
+    });;
+
 });

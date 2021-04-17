@@ -117,7 +117,7 @@
     <ul class="nav flex-column bg-white mb-0">
         @foreach(config('nav.user') as $item)
             <li class="nav-item">
-                <a href="{{ route($item['route']) }}" class="nav-link text-dark font-italic bg-light">
+                <a href="{{ route($item['route'], isset($item['param']) ? get_data_user('web') : '') }}" class="nav-link text-dark font-italic bg-light">
                     <i class="fa {{ $item['icon'] }} mr-3 text-primary fa-fw"></i>
                     {{ $item['name'] }}
                 </a>
@@ -128,7 +128,7 @@
 
 <div class="page-content p-5" id="content">
     <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-        <i class="fa fa-bars mr-2"></i> Toggle </small>
+        <i class="fa fa-bars mr-2"></i> <small> Toggle </small>
     </button>
 
     <div class="">

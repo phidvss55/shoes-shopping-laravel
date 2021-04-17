@@ -25,6 +25,9 @@ if ( ! function_exists('pare_url_file')) {
     }
 }
 
+/**
+ * This function use for upload iamge
+ */
 if ( ! function_exists('upload_image')) {
     function upload_image($file, $folder = '', array $extend = [])
     {
@@ -62,6 +65,8 @@ if ( ! function_exists('upload_image')) {
 }
 
 /**
+ * This function call to update image to local storage
+ *
  * @param $requestDatas
  * @param $field_name
  * @return mixed

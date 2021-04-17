@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class BackendOrderController extends Controller
+class UserOrderController extends Controller
 {
     public function delete($id)
     {
@@ -20,12 +19,13 @@ class BackendOrderController extends Controller
 
         $total                      = $order->od_qty * $order->od_price;
         $transaction                = Transaction::find($order->od_transaction_id);
-        $transaction->t_total_money -= $total;
-        $transaction->save();
-        $order->delete();
+        if ($transaction->t_status == Transaction::STATUS_DEFAULT) {
+            $transaction->t_total_money -= $total;
+            $transaction->save();
+            $order->delete();
+            Log::info('Delete order success');
+        }
 
-        Log::info('Delete success');
         return redirect()->back();
     }
-
 }

@@ -1,5 +1,5 @@
-@extends('layouts.app_backend')
-@section('title', 'Danh sách đơn hàng')
+@extends('layouts.app_user')
+@section('title', 'Transaction List')
 @section('content')
     <h2> Backend Transaction </h2>
     <table class="table table-hover">
@@ -31,9 +31,9 @@
                     </td>
                     <td>{{ $item->created_at }}</td>
                     <td>
-                        <a href="{{ route('get_backend.transaction.view', $item->id) }}" class="btn btn-xs btn-primary">View</a>
+                        <a href="{{ route('get_user.transaction.view', $item->id) }}" class="btn btn-xs btn-primary">View</a>
                         @if ($item->t_status == \App\Models\Transaction::STATUS_DEFAULT)
-                            <a href="{{ route('get_backend.transaction.delete', $item->id) }}" class="btn btn-xs btn-danger">Delete</a>
+                            <a href="{{ route('get_user.transaction.delete', $item->id) }}" class="btn btn-xs btn-danger">Delete</a>
                         @endif
                     </td>
                 </tr>
