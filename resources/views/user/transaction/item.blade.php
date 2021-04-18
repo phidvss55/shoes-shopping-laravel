@@ -50,6 +50,7 @@
                         @if ($item->t_status == \App\Models\Transaction::STATUS_DEFAULT)
                             <a href="{{ route('get_user.order.delete', $item->id) }}" class="btn btn-xs btn-danger">Delete</a>
                         @endif
+                            <a href="{{ route('get_user.vote.create', ['productId' => $item->od_product_id]) }}">Đánh giá</a>
                     </td>
                 </tr>
             @endforeach

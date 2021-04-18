@@ -17,6 +17,10 @@ class HomeController extends Controller
                                 ->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_avatar')
                                 ->limit(8)
                                 ->get();
+        $productNews = Product::where('pro_hot', config('constant.hot'))
+                        ->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_avatar')
+                        ->orderByDesc('id')->limit(4)->get();
+
         $slide         = Slide::limit(1)->first();
         $categoriesHot = Category::where('c_hot', config('constant.hot'))->limit(4)->get();
 
@@ -24,6 +28,7 @@ class HomeController extends Controller
             'productsHot'   => $productsHot,
             'slide'         => $slide,
             'categoriesHot' => $categoriesHot,
+            'productNews'   => $productNews
         ];
 
         return view('frontend.home.index', $viewData);

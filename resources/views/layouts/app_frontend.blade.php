@@ -43,7 +43,8 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('get.home') }}" title="Dashboard">Dashboard</a>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true"
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true"
                                                          aria-expanded="false">Danh mục sản phẩm</a>
                             <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown">
                                 @foreach ($categoriesGlobal as $item)
@@ -68,17 +69,21 @@
                         @if (get_data_user('web'))
                             <li class="nav-item">
                                 <div class="dropdown">
-                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-user-alt mr-1 text-black"></i> {{ get_data_user
-                                ('web', 'name') }}</a>
-                                <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">{{ __('Đơn hàng') }}</a>
-                                    <a href="{{ route('get.logout') }}" class="dropdown-item">{{ __('Đăng xuất') }}</a>
-                                </div>
+                                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fas fa-user-alt mr-1 text-black"></i> {{ get_data_user('web', 'name') }}
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ route('get_user.home') }}" class="dropdown-item">{{ __('Thông tin cá nhân') }}</a>
+                                        <a href="#" class="dropdown-item">{{ __('Đơn hàng') }}</a>
+                                        <a href="{{ route('get.logout') }}" class="dropdown-item">{{ __('Đăng xuất') }}</a>
+                                    </div>
                                 </div>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('get.login') }}"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a>
+                                <a class="nav-link" href="{{ route('get.login') }}">
+                                    <i class="fas fa-user-alt mr-1 text-gray"></i>Login
+                                </a>
                             </li>
                         @endif
                     </ul>

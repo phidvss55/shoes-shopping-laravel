@@ -162,6 +162,7 @@ button:focus, button:active {
     -webkit-filter: grayscale(40%);
     filter: grayscale(40%);
     transition: all 0.3s;
+    height: 280px;
 }
 
 .product-overlay {
@@ -1115,8 +1116,16 @@ a.text-hover-dark:focus, a.text-hover-dark:hover {
 .reset-anchor {
     color: inherit;
     transition: all 0.3s;
-    /*min-height: 40px;*/
-    /*display: block;*/
+    /*min-height: 40px;
+    display: block;*/
+    text-decoration: none;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
 }
 
 .fix-reset-anchor {

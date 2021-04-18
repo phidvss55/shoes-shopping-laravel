@@ -100,8 +100,14 @@
     </div>
 </form>
 
-<script>
-    $(function() {
-        $('#keyword_select').select2();
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#keyword_select").select2();
     });
 </script>
+
+{{--<script>--}}
+{{--    $(function() {--}}
+{{--        $('#keyword_select').select2();--}}
+{{--    });--}}
+{{--</script>--}}
