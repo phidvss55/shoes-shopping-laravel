@@ -837,8 +837,10 @@ section.latest-posts header {
     font-weight: 400;
     color: #777;
     font-size: 0.95em;
-    overflow: hidden;
+    line-height: 1.5;
+    text-overflow: ellipsis;
     display: -webkit-box;
+    overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }

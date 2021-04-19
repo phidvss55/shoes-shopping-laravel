@@ -10,6 +10,7 @@
             <th>Phone</th>
             <th>Total</th>
             <th>Status</th>
+            <th width="20%">Note</th>
             <th>Time</th>
             <th class="">Action</th>
         </tr>
@@ -29,6 +30,7 @@
                             {{ $item->getStatus($item->t_status)['name'] }}
                         </span>
                     </td>
+                    <td>{{ $item->t_note }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>
                         <a href="{{ route('get_backend.transaction.view', $item->id) }}" class="btn btn-xs btn-primary">View</a>

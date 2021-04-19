@@ -13,9 +13,25 @@ use App\Http\Controllers\Backend\BackendProfileController;
 use App\Http\Controllers\Backend\BackendSlideController;
 use App\Http\Controllers\Backend\BackendTransactionController;
 use App\Http\Controllers\Backend\BackendOrderController;
+use App\Http\Controllers\Backend\Auth\BackendLoginController;
 
 
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function() {
+Route::group([
+    'namespace' => 'Backend',
+    'prefix' => 'admin'
+], function() {
+    Route::group(['namespace' => 'Auth'], function() {
+        Route::get('login', [BackendLoginController::class, 'getLogin'])->name('get_admin.login');
+        Route::post('login', [BackendLoginController::class, 'postLogin']);
+        Route::get('logout', [BackendLoginController::class, 'getLogoutAdmin'])->name('get_admin.logout');
+    });
+});
+
+Route::group([
+    'namespace' => 'Backend',
+    'prefix' => 'admin',
+    'middleware' => 'checkLoginAdmin'
+], function() {
     // Trang chu
     Route::get('/', [BackendHomeController::class, 'index'])->name('get_backend.home');
 

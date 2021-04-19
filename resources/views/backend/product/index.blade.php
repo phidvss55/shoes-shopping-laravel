@@ -48,5 +48,8 @@
         @endif
         </tbody>
     </table>
+    <div class="float-right">
+        {!! $products->appends($query ?? [])->links('vendor.pagination.bootstrap-4') !!}
+    </div>
 
 @stop

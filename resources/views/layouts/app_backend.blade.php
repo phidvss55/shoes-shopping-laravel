@@ -35,10 +35,22 @@
             </li>
             @endforeach
         </ul>
-        <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+{{--        <form class="form-inline mt-2 mt-md-0">--}}
+{{--            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">--}}
+{{--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
+{{--        </form>--}}
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="fab fa-user"></i> Hi {{ get_data_user('admins', 'name') }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('get_admin.logout') }}" class="nav-link">
+                    <i class="fab fa-user"></i> Thoát
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>
 

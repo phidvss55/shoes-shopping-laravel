@@ -163,6 +163,7 @@ button:focus, button:active {
     filter: grayscale(40%);
     transition: all 0.3s;
     height: 280px;
+    max-width: 100%;
 }
 
 .product-overlay {

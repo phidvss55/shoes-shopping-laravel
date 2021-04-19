@@ -15,11 +15,11 @@ class HomeController extends Controller
     {
         $productsHot   = Product::where('pro_hot', config('constant.hot'))
                                 ->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_avatar')
-                                ->limit(8)
+                                ->limit(6)
                                 ->get();
         $productNews = Product::where('pro_hot', config('constant.hot'))
                         ->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_avatar')
-                        ->orderByDesc('id')->limit(4)->get();
+                        ->orderByDesc('id')->limit(8)->get();
 
         $slide         = Slide::limit(1)->first();
         $categoriesHot = Category::where('c_hot', config('constant.hot'))->limit(4)->get();

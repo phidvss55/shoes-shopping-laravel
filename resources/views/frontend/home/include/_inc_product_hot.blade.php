@@ -1,6 +1,6 @@
 <section class="py-5">
     <header>
-        <h2 class="h5 text-uppercase mb-4">Top sản phẩm nổi bật</h2>
+        <h2 class="h5 text-uppercase mb-4">Top sản phẩm mới</h2>
     </header>
     <div class="row">
         @foreach ($products as $item)
