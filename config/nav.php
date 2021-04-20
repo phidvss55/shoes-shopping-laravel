@@ -28,13 +28,39 @@ return [
                 'route' => 'get_backend.menu.index'
             ],
             [
+                'name'  => 'Slide',
+                'route' => 'get_backend.slide.index'
+            ],
+            [
                 'name'  => 'Bài viết',
                 'route' => 'get_backend.article.index'
+            ],
+            [
+                'name'  => 'Đơn hàng',
+                'route' => 'get_backend.transaction.index'
             ],
             [
                 'name'  => 'Người dùng',
                 'route' => 'get_backend.user.index'
             ]
+        ]
+    ],
+    'user' => [
+        [
+            'name' => 'Tổng quan',
+            'route' => 'get_user.home',
+            'icon' => 'fa-th-large'
+        ],
+        [
+            'name' => 'Thông tin',
+            'route' => 'get_user.profile',
+            'icon' => 'fa-user',
+            'param' => true
+        ],
+        [
+            'name' => 'Đơn hàng',
+            'route'  => 'get_user.transaction.index',
+            'icon' => 'fa-cart-arrow-down',
         ]
     ]
 ];

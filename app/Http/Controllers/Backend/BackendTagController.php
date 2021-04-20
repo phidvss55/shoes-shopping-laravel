@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\BackendTagRequest;
+use App\Models\Tag;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class BackendTagController extends Controller
 {
@@ -11,30 +14,62 @@ class BackendTagController extends Controller
 
     public function index()
     {
-        return view($this->folder . '.index');
+        $tags     = Tag::orderByDesc('id')->get();
+        $tag      = new Tag();
+        $viewData = [
+            'tags' => $tags,
+            'tag'  => $tag,
+        ];
+
+        return view($this->folder . '.index', $viewData);
     }
 
-    public function create() {
-        return view($this->folder . '.create');
+    public function store(BackendTagRequest $tagRequest)
+    {
+        $requestDatas = $tagRequest->except('_token');
+
+        $requestDatas['t_slug']     = Str::slug($requestDatas['t_name']);
+        $requestDatas['created_at'] = Carbon::now();
+        $tag                        = Tag::Create($requestDatas);
+        if ($tag) {
+            return redirect()->back();
+        }
     }
 
-    public function store() {
+    public function edit($id)
+    {
+        $tags     = Tag::orderByDesc('id')->get();
+        $tag      = Tag::find($id);
+        $viewData = [
+            'tags' => $tags,
+            'tag'  => $tag,
+        ];
 
+        return view($this->folder . '.update', $viewData);
     }
 
-    public function edit($id) {
-        return view($this->folder . '.update');
+    public function update(BackendTagRequest $request, $id)
+    {
+        $data               = $request->except('_token');
+        $data['t_slug']     = Str::slug($data['t_name']);
+        $data['updated_at'] = Carbon::now();
+        $tag                = Tag::find($id);
+        if ($tag) {
+            $tag->update($data);
+
+            return redirect()->back();
+        }
     }
 
-    public function update($id) {
+    public function delete($id)
+    {
+        $tag = Tag::find($id);
+        if ($tag) {
+            $tag->delete();
 
-    }
-
-    public function delete($id) {
-
-    }
-
-    public function updateStatus() {
-
+            return redirect()->back();
+        } else {
+            throw new \Exception('Delete fail');
+        }
     }
 }

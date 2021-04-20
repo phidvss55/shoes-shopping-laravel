@@ -1,5 +1,5 @@
 @extends('layouts.app_backend')
+@section('title', 'Cập nhật bài viết')
 @section('content')
-    <h2>Backend article</h2>
-    <h2>Update article</h2>
+    @include('backend.article.form', ['route' => route('get_backend.article.update', $article->id)])
 @stop

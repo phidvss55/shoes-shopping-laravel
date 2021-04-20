@@ -24,14 +24,15 @@ class BackendMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'mn_name'        => 'required|unique:menus,mn_name,' . $this->id,
+            'mn_name' => 'required|unique:menus,mn_name,' . $this->id,
         ];
     }
 
-    public function message() {
+    public function messages()
+    {
         return [
-            'mn_name.required'  => 'This field is require. Please fill it.',
-            'mn_name.unique'    => 'This data has been exist. Please choose another one.',
+            'mn_name.required' => 'This field is require. Please fill it.',
+            'mn_name.unique'   => 'This data has been exist. Please choose another one.',
         ];
     }
 }

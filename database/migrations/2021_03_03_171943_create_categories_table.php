@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->string('c_avatar')->nullable();
             $table->string('c_banner')->nullable();
             $table->string('c_description')->nullable();
+            $table->string('c_parent_id')->nullable()->default(0);
             $table->tinyInteger('c_hot')->default(ActiveStatus::INACTIVE);
             $table->tinyInteger('c_status')->default(ActiveStatus::ACTIVE);
             $table->timestamps();

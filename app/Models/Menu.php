@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    //    use HasFactory;
     protected $table = 'menus';
-
-//    protected $fillable = [''];
     protected $guarded = [''];
+
+    public function articles() {
+        return $this->hasMany(Article::class, 'a_menu_id');
+    }
 }

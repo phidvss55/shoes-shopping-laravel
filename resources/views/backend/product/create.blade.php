@@ -1,5 +1,5 @@
 @extends('layouts.app_backend')
+@section('title', 'Thêm mới sản phẩm');
 @section('content')
-    <h2>Backend Product</h2>
-    <h2>Create product</h2>
+    @include('backend.product.form', ['route' => route('get_backend.product.store')])
 @stop

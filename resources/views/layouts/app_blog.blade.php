@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,14 +18,22 @@
     <!-- Fancybox-->
     <link rel="stylesheet" href="{{ asset('asset_blog/vendor/@fancyapps/fancybox/jquery.fancybox.min.css') }}">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="{{ asset('asset_blog/css/style.default.css" id="theme-stylesheet') }}">
+    <link rel="stylesheet" href="{{ asset('asset_blog/css/style.default.css') }}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('asset_blog/css/custom.css') }}">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        .row-2 {
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 <header class="header">
@@ -77,12 +84,12 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="logo">
-                    <h6 class="text-white">Bootstrap Blog</h6>
+                    <h6 class="text-white">Blog website</h6>
                 </div>
                 <div class="contact-details">
-                    <p>53 Broadway, Broklyn, NY 11249</p>
-                    <p>Phone: (020) 123 456 789</p>
-                    <p>Email: <a href="mailto:info@company.com">Info@Company.com</a></p>
+                    <p>Chiêu Liêu, Tân Đông Hiệp, Dĩ An, BD</p>
+                    <p>Phone: (84) 333 082 121</p>
+                    <p>Email: <a href="mailto:phuonglam686@gmail.com">phuonglam686@gmail.com</a></p>
                     <ul class="social-menu">
                         <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -101,7 +108,7 @@
                         <li> <a href="#">Privacy &amp; Policy</a></li>
                     </ul>
                     <ul class="list-unstyled">
-                        <li> <a href="#">Our Partners</a></li>
+                        <li> <a href="{{ route('get.home') }}">Dashboard</a></li>
                         <li> <a href="#">FAQ</a></li>
                         <li> <a href="#">How It Works</a></li>
                         <li> <a href="#">Contact</a></li>
@@ -109,19 +116,41 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="latest-posts"><a href="#">
+                <div class="latest-posts">
+                    <a href="#">
                         <div class="post d-flex align-items-center">
-                            <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Hotels for all budgets</strong><span class="date last-meta">October 26, 2016</span></div>
-                        </div></a><a href="#">
+                            <div class="image">
+                                <img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid">
+                            </div>
+                            <div class="title">
+                                <strong>Hotels for all budgets</strong>
+                                <span class="date last-meta">October 26, 2016</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
                         <div class="post d-flex align-items-center">
-                            <div class="image"><img src="img/small-thumbnail-2.jpg" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Great street atrs in London</strong><span class="date last-meta">October 26, 2016</span></div>
-                        </div></a><a href="#">
+                            <div class="image">
+                                <img src="img/small-thumbnail-2.jpg" alt="..." class="img-fluid">
+                            </div>
+                            <div class="title">
+                                <strong>Great street atrs in London</strong>
+                                <span class="date last-meta">October 26, 2016</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
                         <div class="post d-flex align-items-center">
-                            <div class="image"><img src="img/small-thumbnail-3.jpg" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Best coffee shops in Sydney</strong><span class="date last-meta">October 26, 2016</span></div>
-                        </div></a></div>
+                            <div class="image">
+                                <img src="img/small-thumbnail-3.jpg" alt="..." class="img-fluid">
+                            </div>
+                            <div class="title">
+                                <strong>Best coffee shops in Sydney</strong>
+                                <span class="date last-meta">October 26, 2016</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -129,11 +158,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>&copy; 2017. All rights reserved. Your great site.</p>
+                    <p>&copy; 2021. All rights reserved. Your great site.</p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <p>Template By <a href="https://bootstrapious.com/p/bootstrap-carousel" class="text-white">Bootstrapious</a>
-                       <!-- Please do not remove the backlink to Bootstrap Temple unless you purchase an attribution-free license @ Bootstrap Temple or support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)                         -->
+                    <p>Make By <a href="" class="text-white">Phi - LatteMino</a>
                     </p>
                 </div>
             </div>

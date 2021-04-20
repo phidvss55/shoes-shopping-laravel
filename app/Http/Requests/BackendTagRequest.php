@@ -28,7 +28,7 @@ class BackendTagRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return [
             't_name.required' => 'This field is require. Please fill it.',

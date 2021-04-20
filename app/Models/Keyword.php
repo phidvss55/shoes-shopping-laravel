@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Keyword extends Model
 {
-    //    use HasFactory;
     protected $table = 'keywords';
-
-//    protected $fillable = [''];
     protected $guarded = [''];
+
+    public function products() {
+        return $this->belongsToMany(Keyword::class, 'products_keywords', 'pk_product_id', 'pk_keyword_id');
+    }
 }

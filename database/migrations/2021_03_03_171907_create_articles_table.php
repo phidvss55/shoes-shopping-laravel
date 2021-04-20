@@ -22,9 +22,9 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('a_status')->default(ActiveStatus::ACTIVE);
             $table->integer('a_menu_id')->index()->default(0);
             $table->integer('a_view')->default(0);
-            $table->string('a_description')->nullable();
+            $table->text('a_description')->nullable();
             $table->string('a_avatar')->nullable();
-            $table->string('a_content')->nullable();
+            $table->longText('a_content')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

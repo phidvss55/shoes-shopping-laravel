@@ -28,7 +28,7 @@ class BackendCategoryRequest extends FormRequest
         ];
     }
 
-    public function message() {
+    public function messages() {
         return [
             'c_name.required'      => 'This field is require. Please fill it.',
             'c_name.unique'        => 'This data has been exist. Please choose another one.',
