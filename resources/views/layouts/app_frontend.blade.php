@@ -150,7 +150,7 @@
     <script>
         function injectSvgSprite(path) {
             var ajax = new XMLHttpRequest();
-            ajax.open("GET", path, true);
+        ajax.open("GET", path, true);
             ajax.send();
             ajax.onload = function(e) {
                 var div = document.createElement("div");
@@ -206,7 +206,7 @@
                         qty: qty
                     }
                 }).done(function (result) {
-                    console.log(result)
+                    alert(alert.message);
                 });
             });
 
@@ -224,6 +224,9 @@
                     console.log(result)
                     if (result.status === 200) {
                         $this.parents('tr').remove()
+                        if (typeof result.totalCart !== 'undefined') {
+                            $('#totalCart').text("(" + result.totalCart + ")");
+                        }
                     }
                 });
             });
@@ -243,8 +246,11 @@
                         'qty': qty
                     }
                 }).done(function (result) {
-
-                    console.log(result);
+                    alert(result.message);
+                    if (typeof result.totalCart !== 'undefined') {
+                        $('#totalCart').text("(" + result.totalCart + ")");
+                    }
+                    location.reload();
                 });
             });
         });

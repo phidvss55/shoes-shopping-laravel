@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover" id="jsDataTable">
     <thead>
     <tr>
         <th>ID</th>
@@ -30,8 +30,8 @@
                 </td>
                 <td>{{ $item->created_at }}</td>
                 <td>
-                    <a href="{{ route('get_backend.category.update', $item->id) }}" class="btn btn-xs btn-primary">Update</a>
-                    <a href="{{ route('get_backend.category.delete', $item->id) }}" class="btn btn-xs btn-danger">Delete</a>
+                    <a href="{{ route('get_backend.category.update', $item->id) }}" class="btn btn-sm btn-primary">Update</a>
+                    <a href="{{ route('get_backend.category.delete', $item->id) }}" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         @endforeach

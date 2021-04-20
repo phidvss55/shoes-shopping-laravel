@@ -76,6 +76,7 @@ class AjaxShoppingCartController extends Controller
             ]);
             return response()->json([
                 'status'    => '200',
+                'totalCart' => \Cart::count(),
                 'message' => 'Add product to cart successful.',
             ]);
         }
@@ -87,7 +88,8 @@ class AjaxShoppingCartController extends Controller
         {
             \Cart::remove($id);
             return response()->json([
-                'status' => 200
+                'status' => 200,
+                'totalCart' => \Cart::count()
             ]);
         }
     }
@@ -98,7 +100,9 @@ class AjaxShoppingCartController extends Controller
 
             \Cart::update($id, $request->qty); // Will update the quantity
             return [
-                'status' => 200
+                'status' => 200,
+                'totalCart' => \Cart::count(),
+                'message' => 'Updated cart successful.'
             ];
         }
     }

@@ -37,7 +37,7 @@ class ProductRule implements Rule
      * @return string
      */
     public function message()
-    {
+    { 
         return 'The validation error message.';
     }
 }

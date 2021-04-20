@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     // Product detail
     Route::get('/san-pham/{slug}', [ProductDetailController::class, 'index'])->name('get.product_detail');
+    Route::post('/san-pham/comment/{slug}', [ProductDetailController::class, 'comment'])->name('get.product_detail.comment');
 
     // Menu
     Route::get('/menu/{slug}', [MenuController::class, 'index'])->name('get.menu');

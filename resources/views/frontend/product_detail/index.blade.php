@@ -121,9 +121,9 @@
         <!-- DETAILS TABS-->
         <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
             <li class="nav-item"><a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description"
-                                    aria-selected="true">{{ __('Nội dung sản phẩm') }}</a>
-            </li>
+                                    aria-selected="true">{{ __('Nội dung sản phẩm') }}</a></li>
             <li class="nav-item"><a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a></li>
+            <li class="nav-item"><a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="reviews" aria-selected="false">Comments</a></li>
         </ul>
         <div class="tab-content mb-5" id="myTabContent">
             <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
@@ -153,6 +153,61 @@
                                 </div>
                             </div>
                             @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                <div class="p-4 p-lg-5 bg-white">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h4>Comments list</h4>
+                            <div class="post-comments">
+                                @foreach($comments as $item)
+                                    <div class="comment" style="margin-bottom: 20px">
+                                        <div class="comment-header d-flex justify-content-between">
+                                            <div class="user d-flex align-items-center">
+                                                <div class="image">
+                                                    <img style="width:60px; margin-bottom:5px" src="{{ pare_url_file($item->user->avatar ?? "") }}" alt="Image-avatar" class="img-fluid rounded-circle">
+                                                </div>
+                                                <div class="title">
+                                                    <strong>{{ $item->c_name }}</strong>
+                                                    <span class="date">{{ $item->created_at }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-body">
+                                            <p>{{ $item->c_content }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            @if (get_data_user('web'))
+                                <div class="add-comment">
+                                    <header>
+                                        <h3 class="h6">Leave a reply</h3>
+                                    </header>
+                                    <form action="{{ route('get.product_detail.comment', ['slug' => $product->pro_slug]) }}" class="commenting-form" method="post">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <input type="text" name="c_name" value="{{ get_data_user('web', 'name') }}" placeholder="Name" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <input type="email" name="username" value="{{ get_data_user('web', 'email') }}" placeholder="Email Address (will not be published)" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <textarea name="c_content" placeholder="Type your comment" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <button type="submit" class="btn btn-secondary">Submit Comment</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            @else
+                                <p style="color: red">Please login for comment review this product.</p>
+                            @endif
                         </div>
                     </div>
                 </div>
