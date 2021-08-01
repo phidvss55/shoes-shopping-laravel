@@ -27,8 +27,4 @@ class BackendLoginController extends Controller
         $request->session()->invalidate();
         return redirect()->to('/');
     }
-
-    public function getProfile() {
-        return auth()->user()->toArray();
-    }
 }
